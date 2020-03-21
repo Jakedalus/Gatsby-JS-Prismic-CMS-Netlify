@@ -22,7 +22,7 @@ query PageQuery($id: String){
 }`;
 
 const Page = props => {
-  console.log('Page, props:', props);
+  // console.log('Page, props:', props);
   const pageTitle = props.data.prismic.allPages.edges[0].node.page_title;
   const content = props.data.prismic.allPages.edges[0].node.content;
   return (
