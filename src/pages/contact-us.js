@@ -66,7 +66,14 @@ const ContactUs = (props) => {
       <ContentWrapper>
         <RichText render={props.data.prismic.allContact_pages.edges[0].node.form_title} />
         <RichText render={props.data.prismic.allContact_pages.edges[0].node.form_description} />
-        <Form onSubmit={e => e.preventDefault()}>
+        <Form 
+          name="contact-us"
+          method="POST"
+          action="/contact-success"
+          data-netlify="true"
+          onSubmit={e => e.preventDefault()}
+        >
+          <input type="hidden" name="form-name" value="contact-us"/>
           {props.data.prismic.allContact_pages.edges[0].node.form_fields.map((field, i) => {
             if (field.field_type === 'textarea') {
               return (
