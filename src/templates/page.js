@@ -1,7 +1,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { RichText } from 'prismic-reactjs';
+import RichText from '../components/richText';
 import Layout from '../components/layout';
+import SliceZone from '../components/sliceZone';
 
 export const query = graphql`
 query PageQuery($id: String){
