@@ -16,6 +16,28 @@ export const query = graphql`
               primary {
                 hero_content
                 hero_title
+                background_image
+              }
+            }
+            ... on PRISMIC_HomepageBodyCall_to_action_grid {
+              type
+              primary {
+                section_title
+              }
+              fields {
+                button_destination {
+                  ... on PRISMIC_Page {
+                    page_title
+                    content
+                    _meta {
+                      uid
+                    }
+                  }
+                }
+                button_label
+                call_to_action_title
+                content
+                featured_image
               }
             }
           }
@@ -28,7 +50,7 @@ export const query = graphql`
 
 const IndexPage = props => {
 
-  // console.log(props);
+  console.log(props);
   
   return (
   <Layout>

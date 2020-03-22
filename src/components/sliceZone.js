@@ -12,6 +12,7 @@ const SliceZone = ({body}) => {
               key={i}
               title={bodyContent.primary.hero_title}
               content={bodyContent.primary.hero_content}
+              backgroundImage={bodyContent.primary.background_image.url}
             />
             )
         } else {
