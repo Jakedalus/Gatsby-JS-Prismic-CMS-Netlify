@@ -10,6 +10,28 @@ query PageQuery($id: String){
     allPages(id: $id) {
       edges {
         node {
+          body {
+            ... on PRISMIC_PageBodyCall_to_action_grid {
+              type
+              label
+              primary {
+                section_title
+              }
+              fields {
+                button_destination {
+                  ... on PRISMIC_Contact_page {
+                    _meta {
+                      uid
+                    }
+                  }
+                }
+                button_label
+                call_to_action_title
+                content
+                featured_image
+              }
+            }
+          }
           page_title
           content
           _meta {
@@ -23,14 +45,15 @@ query PageQuery($id: String){
 }`;
 
 const Page = props => {
-  // console.log('Page, props:', props);
+  console.log('Page, props:', props);
   const pageTitle = props.data.prismic.allPages.edges[0].node.page_title;
   const content = props.data.prismic.allPages.edges[0].node.content;
   return (
     <Layout>
       <RichText render={pageTitle} />
       <RichText render={content} />
-    </Layout>
+      <SliceZone body={props.data.prismic.allPages.edges[0].node.body} />
+    </Layout> 
   )
 }
 
