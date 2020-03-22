@@ -30,6 +30,19 @@ const Form = styled.form`
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+
+  input, textarea {
+    margin-bottom: 10px;
+    border-radius: 4px;
+    height: 40px;
+    border: 1px solid #eee;
+    width: 100%;
+  }
+
+  textarea {
+    resize: none;
+    height: 100px;
+  }
 `;
 
 const Button = styled.button`
@@ -41,39 +54,46 @@ const Button = styled.button`
   border-radius: 4px;
 `;
 
+const ContentWrapper = styled.section`
+  max-width: 800px;
+  margin: 0 auto;
+`;
+
 const ContactUs = (props) => {
   console.log(props);
   return (
     <Layout>
-      <RichText render={props.data.prismic.allContact_pages.edges[0].node.form_title} />
-      <RichText render={props.data.prismic.allContact_pages.edges[0].node.form_description} />
-      <Form onSubmit={e => e.preventDefault()}>
-        {props.data.prismic.allContact_pages.edges[0].node.form_fields.map((field, i) => {
-          if (field.field_type === 'textarea') {
-            return (
-              <div key={i}>
-                <textarea 
-                  placeholder={field.field_name} 
-                  required={field.required === 'yes'}
-                />
-              </div>
-            )
-          } else {
-            return (
-              <div key={i}>
-                <input 
-                  type={field.field_type}
-                  placeholder={field.field_name} 
-                  required={field.required === 'yes'}
-                />
-              </div>
-            )
-          }
-        })}
-        <Button type="submit">
-          Submit
-        </Button>
-      </Form>
+      <ContentWrapper>
+        <RichText render={props.data.prismic.allContact_pages.edges[0].node.form_title} />
+        <RichText render={props.data.prismic.allContact_pages.edges[0].node.form_description} />
+        <Form onSubmit={e => e.preventDefault()}>
+          {props.data.prismic.allContact_pages.edges[0].node.form_fields.map((field, i) => {
+            if (field.field_type === 'textarea') {
+              return (
+                <div key={i}>
+                  <textarea 
+                    placeholder={field.field_name} 
+                    required={field.required === 'yes'}
+                  />
+                </div>
+              )
+            } else {
+              return (
+                <div key={i}>
+                  <input 
+                    type={field.field_type}
+                    placeholder={field.field_name} 
+                    required={field.required === 'yes'}
+                  />
+                </div>
+              )
+            }
+          })}
+          <Button type="submit">
+            Submit
+          </Button>
+        </Form>
+      </ContentWrapper>
     </Layout>
   )
 };

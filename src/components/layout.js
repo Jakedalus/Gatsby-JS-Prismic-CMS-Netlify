@@ -25,6 +25,11 @@ const navigationQuery = graphql`
           navigationLinks {
             label
             link {
+              ... on PRISMIC_Contact_page {
+                _meta {
+                  uid
+                }
+              }
               ... on PRISMIC_Page {
                 _meta {
                   uid
@@ -68,10 +73,13 @@ const NavLinks = styled.div`
 `;
 
 const Branding = styled.div`
-  color: orange;
-  font-weight: bold;
   margin: auto 0;
-  font-size: 20px;
+
+  a {
+    color: orange;
+    font-weight: bold;
+    font-size: 20px;
+  }
 `;
 
 
@@ -88,7 +96,9 @@ const Layout = ({ children }) => {
             return (
               <>
                 <Branding>
-                  {data.prismic.allNavigations.edges[0].node.branding}
+                  <Link to='/'>
+                    {data.prismic.allNavigations.edges[0].node.branding}
+                  </Link>
                 </Branding>
                 <NavLinks>
                   {
