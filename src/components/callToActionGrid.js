@@ -18,6 +18,9 @@ const CallToActionGrid = ({title, callToActions}) => {
           key={i} 
           title={callToAction.call_to_action_title}
           content={callToAction.content}
+          buttonLabel={callToAction.button_label}
+          buttonDestination={`/${callToAction.button_destination._meta.uid}`}
+          featuredImage={callToAction.featured_image.url}
         />
       ))}
     </CallToActionGridWrapper>
