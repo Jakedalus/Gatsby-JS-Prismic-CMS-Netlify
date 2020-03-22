@@ -1,5 +1,6 @@
 import React from 'react';
 import Hero from './hero';
+import CallToActionGrid from './callToActionGrid';
 
 const SliceZone = ({body}) => {
   console.log(body);
@@ -15,6 +16,14 @@ const SliceZone = ({body}) => {
               backgroundImage={bodyContent.primary.background_image.url}
             />
             )
+        } else if (bodyContent.type === 'call_to_action_grid') {
+          return (
+            <CallToActionGrid
+              key={i}
+              title={bodyContent.primary.section_title}
+              callToActions={bodyContent.fields}
+            />
+          );
         } else {
           return null;
         }
